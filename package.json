@@ -1,9 +1,9 @@
 {
-  "name": "cse3340-hello-react-starter",
+  "name": "dr03-the-puzzler",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Starter React project for CSE3340 - Semester Feb 23 (Hello React exercise).",
+  "description": "DR03: The Puzzler - React project.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

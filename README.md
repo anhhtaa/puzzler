@@ -1,6 +1,6 @@
-## CSE3340 - Hello React Starter
+## DR03: The Puzzler
 
-This repository is a **starter React project** for **CSE3340 - Semester Feb 23**.  
+This repository is the **DR03: The Puzzler** React project.  
 It is designed to run easily in **GitHub Codespaces** or on your own machine.
 
 The project uses:
@@ -135,7 +135,7 @@ Example full workflow:
 ```bash
 git init
 git add .
-git commit -m "Initial commit for CSE3340 Hello React"
+git commit -m "Initial commit for DR03 The Puzzler"
 make submit STUDENT="Ada_Lovelace"
 ```
 
