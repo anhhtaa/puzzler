@@ -15,7 +15,7 @@ function Problem1() {
   const pieceIds = [0, 1, 2, 3];
 
   // TODO: Create `pieces` — an array of objects with id, label, and color. Use pieceIds.map((id) => ({ ... })) and COLORS[id].
-  const pieces = pieceIds.map((id)=>({id, lable: `Piece ${id}`,color: COLORS[id]}));
+  const pieces = pieceIds.map((id)=>({id, label: `Piece ${id}`,color: COLORS[id]}));
 
   return (
     <section className="problem-view p-6">
@@ -26,7 +26,7 @@ function Problem1() {
 
       {/* TODO: Render a <ul> with one <li> per piece. Use pieces.map((piece) => <li key={piece.id}>...</li>). Show piece.label; optionally use style={{ color: piece.color }}. */}
       <ul className="list-disc list-inside space-y-1">
-        {pieces.map((piece)=><li key={piece.id}>{piece.lable}</li>)}
+        {pieces.map((piece)=><li key={piece.id}>{piece.label}</li>)}
       </ul>
     </section>
   );
