@@ -12,7 +12,7 @@
 
 const COLORS = ["#f97316", "#22c55e", "#3b82f6", "#eab308"];
 
-// TODO: Create PuzzlePiece component. It receives { piece } (object with id, label, color). Return a <div> with style={{ backgroundColor: piece.color }} and content {piece.label}. Add classes for size and centering (e.g. inline-flex items-center justify-center w-20 h-20 rounded-lg text-white font-bold shadow).
+// DONE: Create PuzzlePiece component. It receives { piece } (object with id, label, color). Return a <div> with style={{ backgroundColor: piece.color }} and content {piece.label}. Add classes for size and centering (e.g. inline-flex items-center justify-center w-20 h-20 rounded-lg text-white font-bold shadow).
 function PuzzlePiece({ piece }) {
   return (
     <div style={{ backgroundColor: piece.color }} className="inline-flex items-center justify-center w-20 h-20 rounded-lg text-white font-bold shadow">
@@ -22,7 +22,7 @@ function PuzzlePiece({ piece }) {
 }
 
 function Problem2() {
-  // TODO: Build `pieces` array — same as Problem 1: [0,1,2,3].map((id) => ({ id, label: `${id + 1}`, color: COLORS[id] })).
+  // DONE: Build `pieces` array — same as Problem 1: [0,1,2,3].map((id) => ({ id, label: `${id + 1}`, color: COLORS[id] })).
   const pieces = [0,1,2,3].map((id)=>({ id, label: `${id + 1}`, color: COLORS[id] }));
 
   return (
@@ -32,7 +32,7 @@ function Problem2() {
         Create a <code>PuzzlePiece</code> component and render all pieces using .map().
       </p>
 
-      {/* TODO: Render a div with className "flex flex-wrap gap-3". Inside, map over pieces and render <PuzzlePiece key={piece.id} piece={piece} /> for each. */}
+      {/* DONE: Render a div with className "flex flex-wrap gap-3". Inside, map over pieces and render <PuzzlePiece key={piece.id} piece={piece} /> for each. */}
         <div className="flex flex-wrap gap-3">
           {pieces.map((piece) => <PuzzlePiece key={piece.id} piece={piece} />)}
         </div>

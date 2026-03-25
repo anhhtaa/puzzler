@@ -36,14 +36,17 @@ function PuzzlePiece({ piece }) {
 }
 
 function Problem4() {
-  // TODO: Add state for piece order: useState([0, 1, 2, 3]). Destructure as [order, setOrder].
+  // DONE: Add state for piece order: useState([0, 1, 2, 3]). Destructure as [order, setOrder].
   const [order, setOrder] = useState([0, 1, 2, 3]);
 
-  // TODO: Implement handleShuffle so it calls setOrder(shuffleArray(order)).
-  const handleShuffle = () => {};
+  // DONE: Implement handleShuffle so it calls setOrder(shuffleArray(order)).
+  const handleShuffle = () => {
+     setOrder(shuffleArray(order));
+  };
 
-  // TODO: Derive piecesToShow: order.map((id) => PIECES_DATA.find((p) => p.id === id)).
-  const piecesToShow = [];
+  // DONE: Derive piecesToShow: order.map((id) => PIECES_DATA.find((p) => p.id === id)).
+  const piecesToShow =
+    order.map((id) => PIECES_DATA.find((p) => p.id ===id));
 
   return (
     <section className="problem-view p-6">
@@ -60,9 +63,9 @@ function Problem4() {
         Shuffle
       </button>
 
-      {/* TODO: Render a grid (grid grid-cols-2 gap-3 w-fit) that maps over piecesToShow and renders <PuzzlePiece key={piece.id} piece={piece} /> for each. */}
+      {/* DONE: Render a grid (grid grid-cols-2 gap-3 w-fit) that maps over piecesToShow and renders <PuzzlePiece key={piece.id} piece={piece} /> for each. */}
       <div className="grid grid-cols-2 gap-3 w-fit">
-        {/* ... */}
+          {piecesToShow.map((piece) => <PuzzlePiece key={piece.id} piece={piece} />)}
       </div>
     </section>
   );

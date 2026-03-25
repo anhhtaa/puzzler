@@ -15,11 +15,16 @@ import { PUZZLE_PIECES_P3 } from "../config.jsx";
 
 const PIECES_DATA = PUZZLE_PIECES_P3;
 
-// TODO: Add draggable and onDragStart to the div. In onDragStart: e.dataTransfer.setData("text/plain", String(piece.id)); e.dataTransfer.effectAllowed = "move". Add cursor-grab and active:cursor-grabbing to className.
+// DONE: Add draggable and onDragStart to the div. In onDragStart: e.dataTransfer.setData("text/plain", String(piece.id)); e.dataTransfer.effectAllowed = "move". Add cursor-grab and active:cursor-grabbing to className.
 function PuzzlePiece({ piece }) {
   return (
     <div
-      className="inline-flex items-center justify-center w-20 h-20 rounded-lg text-white font-bold shadow"
+      draggable
+      onDragStart={(e) => {
+        e.dataTransfer.setData("text/plain", String(piece.id));
+        e.dataTransfer.effectAllowed = "move";
+      }}
+      className="inline-flex items-center justify-center w-20 h-20 rounded-lg text-white font-bold shadow cursor-grab active:cursor-grabbing"
       style={{ backgroundColor: piece.color }}
     >
       {piece.label}
@@ -28,14 +33,24 @@ function PuzzlePiece({ piece }) {
 }
 
 function Problem5() {
-  // TODO: State for which piece is in each slot: useState([0, 1, 2, 3]). slotIds[i] = piece id in slot i.
+  // DONE: State for which piece is in each slot: useState([0, 1, 2, 3]). slotIds[i] = piece id in slot i.
   const [slotIds, setSlotIds] = useState([0, 1, 2, 3]);
 
-  // TODO: handleDragOver: e.preventDefault(); e.dataTransfer.dropEffect = "move";
-  const handleDragOver = (e) => {};
+  // DONE: handleDragOver: e.preventDefault(); e.dataTransfer.dropEffect = "move";
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+  };
 
-  // TODO: handleDrop(e, toIndex): e.preventDefault(); get pieceId from e.dataTransfer.getData("text/plain"); find fromIndex = slotIds.indexOf(pieceId); copy slotIds, swap next[fromIndex] and next[toIndex], then setSlotIds(next).
-  const handleDrop = (e, toIndex) => {};
+  // DONE: handleDrop(e, toIndex): e.preventDefault(); get pieceId from e.dataTransfer.getData("text/plain"); find fromIndex = slotIds.indexOf(pieceId); copy slotIds, swap next[fromIndex] and next[toIndex], then setSlotIds(next).
+  const handleDrop = (e, toIndex) => {
+    e.preventDefault();
+    const pieceId = Number(e.dataTransfer.getData("text/plain"));
+    const fromIndex = slotIds.indexOf(pieceId);
+    const next = [...slotIds];
+    [next[fromIndex], next[toIndex]] = [next[toIndex], next[fromIndex]];
+    setSlotIds(next);
+  };
 
   const piecesInSlots = slotIds.map((id) => PIECES_DATA.find((p) => p.id === id));
 

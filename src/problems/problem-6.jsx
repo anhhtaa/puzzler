@@ -98,7 +98,7 @@ function Problem6() {
     e.dataTransfer.dropEffect = "move";
   };
 
-  // TODO: Implement handleDropOnBoard so pieces "magnet snap" to the nearest grid position:
+  // DONE: Implement handleDropOnBoard so pieces "magnet snap" to the nearest grid position:
   // 1. Read pieceId from e.dataTransfer.getData("text/plain").
   // 2. Use e.clientX / e.clientY and the board's boundingClientRect to get the drop point (x, y) relative to the board.
   // 3. Find the nearest entry in SLOT_CENTERS to that point.
@@ -106,7 +106,31 @@ function Problem6() {
   // 5. Otherwise, update slotIds using setSlotIds so that:
   //    - If the piece was off-grid, put it into that slot (and optionally clear any piece that was there).
   //    - If the piece was already on-grid, swap it with whatever is in the target slot.
-  const handleDropOnBoard = (e) => {};
+  
+  const handleDropOnBoard = (e) => {
+    e.preventDefault();
+    const pieceId = Number(e.dataTransfer.getData("text/plain"));
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    let nearestIndex = 0;
+    let nearestDist = Infinity;
+    SLOT_CENTERS.forEach((center, i) => {
+      const dist = Math.hypot(x - center.left, y - center.top);
+      if (dist < nearestDist) {
+        nearestDist = dist;
+        nearestIndex = i;
+      }
+    });
+    const fromIndex = slotIds.indexOf(pieceId);
+    const next = [...slotIds];
+    if (fromIndex !== -1) {
+      [next[fromIndex], next[nearestIndex]] = [next[nearestIndex], next[fromIndex]];
+    } else {
+      next[nearestIndex] = pieceId;
+    }
+    setSlotIds(next);
+  };
 
   return (
     <section className="problem-view p-6">
